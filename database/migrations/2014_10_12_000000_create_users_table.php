@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -22,6 +23,22 @@ return new class extends Migration
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
+
+            $table->unsignedBigInteger('country_id');
+            $table->unsignedBigInteger('time_zone_id');
+
+            $table->foreign('country_id')
+                ->references('id')
+                ->on('countries')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            $table->foreign('time_zone_id')
+                ->references('id')
+                ->on('time_zones')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
             $table->timestamps();
         });
     }
