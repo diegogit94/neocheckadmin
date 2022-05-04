@@ -42,7 +42,7 @@ class CreateProjectsTable extends Migration
             $table->unsignedBigInteger('country_id');
             $table->unsignedBigInteger('collection_model_id');
             $table->unsignedBigInteger('bank_id')->nullable();
-            $table->unsignedBigInteger('programming_lenguage_id')->nullable();
+            $table->unsignedBigInteger('programming_language_id')->nullable();
             $table->unsignedBigInteger('commercial_agent_id');
             $table->unsignedBigInteger('site_id')->nullable();
             
@@ -88,9 +88,9 @@ class CreateProjectsTable extends Migration
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
 
-            $table->foreign('programming_lenguage_id')
+            $table->foreign('programming_language_id')
                     ->references('id')
-                    ->on('programming_lenguages')
+                    ->on('programming_languages')
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
 
