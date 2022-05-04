@@ -76,7 +76,7 @@ class CreateProjectsTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            $table->foreign('collecton_model_id')
+            $table->foreign('collection_model_id')
                     ->references('id')
                     ->on('collection_models')
                     ->onUpdate('cascade')

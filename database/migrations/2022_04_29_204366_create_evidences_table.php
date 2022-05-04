@@ -19,10 +19,17 @@ class CreateEvidencesTable extends Migration
             $table->text('comments');
 
             $table->unsignedBigInteger('status_id');
+            $table->unsignedBigInteger('certification_id');
 
             $table->foreign('status_id')
                 ->references('id')
                 ->on('statuses')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            $table->foreign('certification_id')
+                ->references('id')
+                ->on('certifications')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 

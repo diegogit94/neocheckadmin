@@ -26,7 +26,8 @@ class CreateDevolutionsTable extends Migration
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
 
-            $table->timestamps();
+            $table->timestamp('devolution_date')->nullable();
+            $table->timestamp('reactivation_date')->nullable();
         });
     }
 
