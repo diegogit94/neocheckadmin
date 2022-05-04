@@ -25,8 +25,6 @@ class CreateImagesTable extends Migration
                 ->on('evidences')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-
-            $table->timestamps();
         });
     }
 
