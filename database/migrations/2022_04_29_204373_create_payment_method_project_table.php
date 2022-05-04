@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCertificationEvidenceTable extends Migration
+class CreatePaymentMethodProjectTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,21 @@ class CreateCertificationEvidenceTable extends Migration
      */
     public function up()
     {
-        Schema::create('certification_evidence', function (Blueprint $table) {
+        Schema::create('payment_method_project', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('certification_id');
-            $table->unsignedBigInteger('evidence_id');
+            $table->unsignedBigInteger('payment_method_id');
+            $table->unsignedBigInteger('project_id');
 
-            $table->foreign('certification_id')
+            $table->foreign('payment_method_id')
                 ->references('id')
-                ->on('certifications')
+                ->on('payment_methods')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            $table->foreign('evidence_id')
+            $table->foreign('project_id')
                 ->references('id')
-                ->on('evidences')
+                ->on('projects')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });
@@ -40,6 +40,6 @@ class CreateCertificationEvidenceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('certification_evidence');
+        Schema::dropIfExists('payment_method_project');
     }
 }
