@@ -30,8 +30,6 @@ class CreatePaymentMethodProjectTable extends Migration
                 ->on('projects')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-
-            $table->timestamps();
         });
     }
 
