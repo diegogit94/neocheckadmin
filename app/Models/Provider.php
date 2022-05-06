@@ -9,6 +9,8 @@ class Provider extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     public function country()
     {
         return $this->belongsTo(Country::class);
