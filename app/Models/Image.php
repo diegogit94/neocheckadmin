@@ -9,6 +9,8 @@ class Image extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     public function evidence()
     {
         return $this->belongsTo(Evidence::class);
