@@ -16,6 +16,6 @@ class ChecklistType extends Model
 
     public function checklist_fields()
     {
-        return $this->hasMany(ChecklistField::class);
+        return $this->belongsToMany(ChecklistField::class);
     }
 }
