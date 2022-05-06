@@ -9,6 +9,13 @@ class Evidence extends Model
 {
     use HasFactory;
 
+    /**
+     * Specified table name.
+     * 
+     * @var string
+     */
+    protected $table = 'evidences';
+
     public function certification()
     {
         return $this->belongsTo(Certification::class);
