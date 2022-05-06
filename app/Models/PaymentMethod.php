@@ -9,8 +9,10 @@ class PaymentMethod extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     public function projects()
     {
-        return $this->belongsTo(Project::class);
+        return $this->belongsToMany(Project::class);
     }
 }
