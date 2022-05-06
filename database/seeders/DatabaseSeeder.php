@@ -52,8 +52,8 @@ class DatabaseSeeder extends Seeder
         Image::factory(800)->create();
         Project::factory(300)->create();
         Currency::factory(20)->create();
-        CurrencyProjectSeeder::class; // Change it for a factory
+        // CurrencyProjectSeeder::class; // Change it for a factory
         PaymentMethod::factory(6)->create();
-        PaymentMethodProjectSeeder::class; // Change it for a factory
+        // PaymentMethodProjectSeeder::class; // Change it for a factory
     }
 }
