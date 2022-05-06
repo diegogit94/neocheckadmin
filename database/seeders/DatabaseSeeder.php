@@ -45,15 +45,12 @@ class DatabaseSeeder extends Seeder
         Merchant::factory(80)->create();
         ChecklistField::factory(200)->create();
         ChecklistType::factory(7)->create();
-        // $this->call([ChecklistFieldChecklistTypeSeeder::class]); // Change it for a factory
         Status::factory(3)->create();
         Certification::factory(300)->create(); // Check the relationship between the factories and models
         Evidence::factory(600)->create();
         Image::factory(800)->create();
         Project::factory(300)->create();
         Currency::factory(20)->create();
-        // CurrencyProjectSeeder::class; // Change it for a factory
         PaymentMethod::factory(6)->create();
-        // PaymentMethodProjectSeeder::class; // Change it for a factory
     }
 }
