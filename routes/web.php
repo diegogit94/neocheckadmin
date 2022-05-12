@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,3 +33,6 @@ Route::get('/', [MainController::class, 'index'])->name('main.index');
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
 Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
+
+// Roles
+Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
