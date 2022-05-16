@@ -31,8 +31,8 @@ Route::get('/', [MainController::class, 'index'])->name('main.index');
 
 // Users
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
-
 Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
+Route::patch('/users/{id}', [UserController::class, 'update'])->name('users.update');
 
 // Roles
 Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
