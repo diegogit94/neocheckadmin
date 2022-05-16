@@ -5,7 +5,12 @@
 @section('content')
 
     <!-- component -->
-    <div class="bg-white rounded-md w-full">
+    @if (session('status'))
+        <div class="flex bg-gradient-to-r from-green-300 rounded-lg p-4 mb-4 text-sm text-gray-500">
+            {{ session('status') }}
+        </div>
+    @endif
+    <div class="rounded-md w-full">
         <div class=" flex items-center justify-between pb-6">
             <div>
                 {{-- <h2 class="text-gray-600 font-semibold">USERS</h2>
@@ -86,7 +91,7 @@
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                         <p class="text-gray-900 whitespace-no-wrap">
-                                            rol-generico
+                                            {{ $user->roles->implode('name') }}
                                         </p>
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
