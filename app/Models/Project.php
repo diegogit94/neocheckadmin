@@ -36,7 +36,7 @@ class Project extends Model
 
     public function currencies()
     {
-        return $this->hasMany(Currency::class);
+        return $this->belongsToMany(Currency::class);
     }
 
     public function devolution()
@@ -51,7 +51,7 @@ class Project extends Model
 
     public function payment_methods()
     {
-        return $this->hasMany(PaymentMethod::class);
+        return $this->belongsToMany(PaymentMethod::class);
     }
 
     public function programming_language()
