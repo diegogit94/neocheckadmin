@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\MainController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -26,3 +25,15 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+// Dashboard
+Route::get('/', [MainController::class, 'index'])->name('main.index');
+
+// Users
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
+Route::patch('/users/{id}', [UserController::class, 'update'])->name('users.update');
+Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
+// Roles
+Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
