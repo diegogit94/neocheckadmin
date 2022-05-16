@@ -5,7 +5,10 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\TimeZone;
 use App\Models\Country;
+use App\Models\ModelHasRole;
 use App\Models\User;
+use Database\Factories\ModelHasRoleFactory;
+
 // use App\Models\Provider;
 // use App\Models\Collection;
 // use App\Models\Bank;
@@ -34,8 +37,9 @@ class DatabaseSeeder extends Seeder
     {
         TimeZone::factory(50)->create();
         Country::factory(50)->create();
+        User::factory()->create(['name' => 'Mr Hyde', 'email' => 'mrhyde@admin.com']);
         User::factory(99)->create();
-        User::factory()->create(['email' => 'mrhyde@admin.com']);
+        $this->call(RolePermissionSeeder::class);
         // Provider::factory(20)->create();
         // Collection::factory(2)->create();
         // Bank::factory(50)->create();
