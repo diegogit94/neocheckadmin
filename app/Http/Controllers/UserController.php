@@ -107,4 +107,20 @@ class UserController extends Controller
             ->route('users.index')
             ->with('status', 'Se ha eliminado el usuario');
     }
+
+    /**
+     * Search users by name or email.
+     * 
+     * @param Request $request
+     * 
+     * @return [type]
+     */
+    public function search(Request $request)
+    {
+        $users = User::where('name', 'LIKE', '%'. $request['query'] . '%')
+                        ->orWhere('email', 'LIKE', '%'. $request['query'] . '%')
+                        ->paginate(8);
+
+        return view('users.users', compact('users'));
+    }
 }
