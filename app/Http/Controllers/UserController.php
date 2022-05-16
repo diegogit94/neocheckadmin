@@ -73,7 +73,19 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+
+        if (!$user->hasRole($request->role)) {
+            $user->syncRoles([$request->role]);
+
+            return redirect()
+            ->route('users.show', $id)
+            ->with('status', 'El rol se ha actualizado correctamente.');
+        } else {
+            return redirect()
+                ->route('users.show', $id)
+                ->with('status', 'El usuario ya cuenta con este rol.');
+        }
     }
 
     /**
