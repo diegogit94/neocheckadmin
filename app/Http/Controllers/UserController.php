@@ -82,7 +82,7 @@ class UserController extends Controller
             $user->syncRoles([$request->role]);
 
             return redirect()
-            ->route('users.show', $id)
+            ->route('users.index', $id)
             ->with('status', 'El rol se ha actualizado correctamente.');
         } else {
             return redirect()
