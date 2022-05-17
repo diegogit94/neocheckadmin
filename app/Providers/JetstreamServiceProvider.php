@@ -3,8 +3,12 @@
 namespace App\Providers;
 
 use App\Actions\Jetstream\DeleteUser;
+use App\Models\Country;
+use App\Models\TimeZone;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Fortify\Fortify;
 use Laravel\Jetstream\Jetstream;
+use Spatie\Permission\Models\Role;
 
 class JetstreamServiceProvider extends ServiceProvider
 {
@@ -28,6 +32,15 @@ class JetstreamServiceProvider extends ServiceProvider
         $this->configurePermissions();
 
         Jetstream::deleteUsersUsing(DeleteUser::class);
+
+        Fortify::registerView(function () {
+
+            $countries = Country::orderBy('name')->get();
+            $timeZones = TimeZone::orderBy('name')->get();
+            $roles = Role::all();
+
+            return view('auth.register', compact('countries', 'timeZones', 'roles'));
+        });
     }
 
     /**
