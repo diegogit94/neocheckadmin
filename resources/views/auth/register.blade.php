@@ -90,6 +90,11 @@
                     {{ __('Register') }}
                 </x-jet-button>
             </div>
+            <div>
+                <a type="button" class="bg-red-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer" href="{{ route('users.index') }}">
+                    {{ __('Cancel') }}
+                </a>
+            </div>
         </form>
     </x-jet-authentication-card>
 </x-guest-layout>
