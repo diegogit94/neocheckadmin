@@ -38,3 +38,7 @@ Route::post('/users', [UserController::class, 'search'])->name('users.search');
 
 // Roles
 Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
+
+    Route::get('/register', [RegisteredUserController::class, 'create'])
+        ->middleware('can:users.create')
+        ->name('register');
