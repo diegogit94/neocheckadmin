@@ -29,21 +29,34 @@ use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 
 // Dashboard
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', [MainController::class, 'index'])->name('main.index');
+    Route::get('/', [MainController::class, 'index'])
+        ->name('main.index');
 
     // Users
     Route::get('/users', [UserController::class, 'index'])
         ->middleware('can:users.index')
         ->name('users.index');
+
     Route::get('/users/{id}', [UserController::class, 'show'])
         ->middleware('can:users.show')
         ->name('users.show');
+
+    Route::get('/register', [RegisteredUserController::class, 'create'])
+        ->middleware('can:users.create')
+        ->name('register');
+
+    Route::post('/register/store', [UserController::class, 'store'])
+        ->middleware('can:users.store')
+        ->name('users.store');
+
     Route::patch('/users/{id}', [UserController::class, 'update'])
         ->middleware('can:users.update')
         ->name('users.update');
+
     Route::delete('/users/{id}', [UserController::class, 'destroy'])
         ->middleware('can:users.destroy')
         ->name('users.destroy');
+
     Route::post('/users', [UserController::class, 'search'])
         ->middleware('can:users.search')
         ->name('users.search');
