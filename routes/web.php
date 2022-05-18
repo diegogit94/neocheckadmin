@@ -66,7 +66,8 @@ Route::middleware(['auth'])->group(function () {
         ->middleware('can:roles.index')
         ->name('roles.index');
 
-    Route::get('/register', [RegisteredUserController::class, 'create'])
-        ->middleware('can:users.create')
-        ->name('register');
+    Route::get('/roles/create', [RoleController::class, 'create'])
+        ->middleware('can:roles.create')
+        ->name('roles.create');
+
 });
