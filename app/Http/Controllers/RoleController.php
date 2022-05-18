@@ -40,7 +40,13 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $role = Role::create(['name' => $request->role_name]);
+
+        $role->syncPermissions($request->permissions);
+
+        return redirect()
+                ->route('roles.index')
+                ->with('status', 'Rol creado con éxito.');
     }
 
     /**
