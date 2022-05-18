@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -38,7 +40,28 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required'],
+            'country_id' => ['required', 'integer'],
+            'time_zone_id' => ['required', 'integer'],
+            'role_name' => ['required'],
+        ])->validate();
+
+        $user = User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+            'country_id' => $request['country_id'],
+            'time_zone_id' => $request['time_zone_id'],
+        ]);
+
+        $user->assignRole($request['role_name']);
+
+        return redirect()
+                ->route('users.show', $user->id)
+                ->with('status', 'Usuario creado exitosamente.');
     }
 
     /**
