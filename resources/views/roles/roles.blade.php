@@ -14,7 +14,7 @@
         <div></div>
         <div class="flex items-center justify-between">
             <div class="lg:ml-40 ml-10 space-x-8 p-2">
-                <a href="#"
+                <a href="{{ route('roles.create') }}"
                     class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">Crear</a>
             </div>
         </div>
