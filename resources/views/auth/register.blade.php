@@ -12,7 +12,7 @@
 
         <x-jet-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('register') }}" name="register_form">
+        <form method="POST" action="{{ route('users.store') }}" name="register_form">
             @csrf
 
             <div>
@@ -99,8 +99,6 @@
     </x-jet-authentication-card>
 </x-guest-layout>
 
-@endsection
-
 <script>
     
     type = "text/javascript" > checkBoxLimit()
@@ -124,3 +122,5 @@
             }
 
 </script>
+
+@endsection
