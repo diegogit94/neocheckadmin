@@ -70,4 +70,7 @@ Route::middleware(['auth'])->group(function () {
         ->middleware('can:roles.create')
         ->name('roles.create');
 
+    Route::post('/roles/store/', [RoleController::class, 'store'])
+        ->middleware('can:roles.create')
+        ->name('roles.store');
 });
