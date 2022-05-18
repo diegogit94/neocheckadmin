@@ -4,6 +4,11 @@
 
 @section('content')
     
+@if (session('status'))
+    <div class="flex bg-gradient-to-r from-green-300 rounded-lg p-4 mb-4 text-sm text-gray-500">
+        {{ session('status') }}
+    </div>
+@endif
 <div class="-mx-4 sm:-mx-8 px-4 sm:px-8  overflow-x-auto">
     <div class=" flex items-center justify-between pb-6">
         <div></div>
