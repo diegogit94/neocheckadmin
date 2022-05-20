@@ -73,4 +73,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/roles/store/', [RoleController::class, 'store'])
         ->middleware('can:roles.create')
         ->name('roles.store');
+
+    Route::get('/roles/edit/{id}', [RoleController::class, 'edit'])
+        ->middleware('can:roles.edit')
+        ->name('roles.edit');
 });
