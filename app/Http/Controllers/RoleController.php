@@ -68,7 +68,8 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        return redirect()
+                ->route('roles.show', compact('id'));
     }
 
     /**
