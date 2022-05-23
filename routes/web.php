@@ -85,4 +85,8 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/roles/update/{id}', [RoleController::class, 'update'])
         ->middleware('can:roles.update')
         ->name('roles.update');
+
+    Route::delete('/roles/delete/{id}', [RoleController::class, 'destroy'])
+        ->middleware('can:roles.destroy')
+        ->name('roles.destroy');
 });
