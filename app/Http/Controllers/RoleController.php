@@ -57,7 +57,13 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        //
+        $role = Role::find($id);
+
+        $rolePermissions = $role->permissions;
+
+        $permissions = Permission::orderBy('name')->get();
+
+        return view('roles.show', compact('role', 'rolePermissions', 'permissions'));
     }
 
     /**
