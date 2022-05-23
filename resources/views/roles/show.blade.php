@@ -17,7 +17,9 @@
                 <div class="max-w-md mx-auto">
                     <div class="flex items-center space-x-5">
                     </div>
-                    <form action="#" method="POST" name="user_form" id="user_form">
+                    <form action="{{ route('roles.update', $role->id) }}" method="POST" name="user_form" id="user_form">
+                        @method('PATCH')
+                        @csrf
                         <label for="">Nombre del rol</label>
                         <input name="role_name" value="{{ $role->name }}"
                                class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full"
@@ -40,7 +42,7 @@
 
                                         <div class="flex items-center">
 
-                                            <input id="" type="checkbox" value="" name="permissions[]" {{ $role->hasPermissionTo($permission) ? 'checked' : '' }}
+                                            <input id="" type="checkbox" value="{{ $permission->name }}" name="permissions[]" {{ $role->hasPermissionTo($permission) ? 'checked' : '' }}
                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                             <label for="" class="pl-2">{{ $permission->name }}</label>
 
