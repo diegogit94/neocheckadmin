@@ -17,18 +17,23 @@
 			<span class="text-xs">Lista Usuarios</span> --}}
             </div>
             <div class="flex items-center justify-between">
-                <div class="flex bg-gray-50 items-center rounded-md">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
+                <div class="flex items-center rounded-md">
+                    {{-- <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
                         fill="currentColor">
                         <path fill-rule="evenodd"
                             d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
                             clip-rule="evenodd" />
-                    </svg>
-                    <input class="bg-gray-50 outline-none ml-1 block " type="text" name="" id="" placeholder="Buscar por nombre o email...">
+                    </svg> --}}
+                    <form action="{{ route('users.search') }}" method="POST">
+                    @csrf
+                    <input class="bg-gray-50 outline-none ml-1 block" type="text" name="query" id="query" placeholder="Nombre o Correo">
+                    </form>
+                    <form action="{{ route('users.index') }}">
+                    <button
+                        class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer" type="submit">Limpiar</button>
+                    </form>
                 </div>
                 <div class="lg:ml-40 ml-10 space-x-8">
-                    <button
-                        class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">Buscar</button>
                     <a href="{{ route('register') }}"
                         class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">Crear</a>
                 </div>

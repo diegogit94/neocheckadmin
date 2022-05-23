@@ -1,12 +1,18 @@
+@extends('layouts.sidebar')
+
+@section('page', 'Register')
+
+@section('content')
+
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            {{-- <x-jet-authentication-card-logo /> --}}
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('users.store') }}" name="register_form">
             @csrf
 
             <div>
@@ -20,6 +26,26 @@
             </div>
 
             <div class="mt-4">
+                <x-jet-label for="country_id" value="{{ __('Country') }}" />
+                <select id="country_id" name="country_id" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full" type="select" name="country" required>
+                    <option value="" selected>Choose Country</option>
+                    @foreach ($countries as $country)
+                        <option value="{{ $country->id }}">{{ $country->name }}</option>
+                    @endforeach
+                  </select>
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="time_zone_id" value="{{ __('Time Zone') }}" />
+                <select id="time_zone_id" name="time_zone_id" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full" type="select" name="time_zone" required>
+                    <option value="" selected>Choose Time Zone</option>
+                    @foreach ($timeZones as $timeZone)
+                        <option value="{{ $timeZone->id }}">{{ $timeZone->name }}</option>
+                    @endforeach
+                  </select>
+            </div>
+
+            <div class="mt-4">
                 <x-jet-label for="password" value="{{ __('Password') }}" />
                 <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
             </div>
@@ -27,6 +53,15 @@
             <div class="mt-4">
                 <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
                 <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="role_name" value="{{ __('Roles') }}" />
+                @foreach ($roles as $role)
+                    <input type="checkbox" name="role_name" value="{{ $role->name }}">
+                    <label for="role_name">{{ $role->name }}</label>
+                    <br>
+                @endforeach
             </div>
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
@@ -55,6 +90,37 @@
                     {{ __('Register') }}
                 </x-jet-button>
             </div>
+            <div>
+                <a type="button" class="bg-red-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer" href="{{ route('users.index') }}">
+                    {{ __('Cancel') }}
+                </a>
+            </div>
         </form>
     </x-jet-authentication-card>
 </x-guest-layout>
+
+<script>
+    
+    type = "text/javascript" > checkBoxLimit()
+
+            function checkBoxLimit() {
+                var checkBoxGroup = document.forms['register_form']['role_name'];
+                var limit = 1;
+                for (var i = 0; i < checkBoxGroup.length; i++) {
+                    checkBoxGroup[i].onclick = function() {
+                        var checkedcount = 0;
+                        for (var i = 0; i < checkBoxGroup.length; i++) {
+                            checkedcount += (checkBoxGroup[i].checked) ? 1 : 0;
+                        }
+                        if (checkedcount > limit) {
+                            console.log("Por favor, seleccionar solo " + limit + " checkbox.");
+                            alert("Por favor, seleccionar solo " + limit + " checkbox.");
+                            this.checked = false;
+                        }
+                    }
+                }
+            }
+
+</script>
+
+@endsection

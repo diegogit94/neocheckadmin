@@ -24,24 +24,19 @@ class RolePermissionSeeder extends Seeder
         Permission::create(['name' => 'users.index'])->syncRoles(['admin']);
         Permission::create(['name' => 'users.show'])->syncRoles(['admin']);
         Permission::create(['name' => 'users.create'])->syncRoles(['admin']);
+        Permission::create(['name' => 'users.store'])->syncRoles(['admin']);
         Permission::create(['name' => 'users.edit'])->syncRoles(['admin']);
+        Permission::create(['name' => 'users.update'])->syncRoles(['admin']);
         Permission::create(['name' => 'users.destroy'])->syncRoles(['admin']);
+        Permission::create(['name' => 'users.search'])->syncRoles(['admin']);
 
         Permission::create(['name' => 'roles.index'])->syncRoles(['admin']);
         Permission::create(['name' => 'roles.show'])->syncRoles(['admin']);
         Permission::create(['name' => 'roles.create'])->syncRoles(['admin']);
+        Permission::create(['name' => 'roles.store'])->syncRoles(['admin']);
         Permission::create(['name' => 'roles.edit'])->syncRoles(['admin']);
+        Permission::create(['name' => 'roles.update'])->syncRoles(['admin']);
         Permission::create(['name' => 'roles.destroy'])->syncRoles(['admin']);
-        
-        // $admin = User::first();
-        // $leader = User::find(2);
-        // $engineer = User::find(3);
-        // $commercialAgent = User::find(4);
-
-        // $admin->assignRole('admin');
-        // $leader->assignRole('leader');
-        // $engineer->assignRole('engineer');
-        // $commercialAgent->assignRole('commercial-agent');
 
         $users = User::all();
 
@@ -55,5 +50,9 @@ class RolePermissionSeeder extends Seeder
         foreach ($users as $user) {
                 $user->assignRole(array_rand($roles));
         }
+
+        $admin = User::first();
+
+        $admin->syncRoles(['admin']);
     }
 }

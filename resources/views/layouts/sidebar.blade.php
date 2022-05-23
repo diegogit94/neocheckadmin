@@ -39,6 +39,7 @@
                                     </a>
                                     {{-- <div class="py-1 px-3 bg-gray-600 rounded text-gray-300 flex items-center justify-center text-xs">5</div> --}}
                                 </li>
+                                @can('users.index')
                                 <li class="flex w-full justify-between text-gray-400 hover:text-gray-300 cursor-pointer items-center mb-6">
                                     <a href="{{route('users.index')}}" class="flex items-center focus:outline-none focus:ring-2 focus:ring-white">
                                         {{-- <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-puzzle" width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -53,6 +54,8 @@
                                     </a>
                                     {{-- <div class="py-1 px-3 bg-gray-600 rounded text-gray-300 flex items-center justify-center text-xs">8</div> --}}
                                 </li>
+                                @endcan
+                                @can('roles.index')
                                 <li class="flex w-full justify-between text-gray-400 hover:text-gray-300 cursor-pointer items-center mb-6">
                                     <a href="{{ route('roles.index') }}" class="flex items-center focus:outline-none focus:ring-2 focus:ring-white">
                                         {{-- <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-compass" width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -67,6 +70,7 @@
                                         <span class="text-sm ml-2">Roles y Permisos</span>
                                     </a>
                                 </li>
+                                @endcan
                                 <li class="flex w-full justify-between text-gray-400 hover:text-gray-300 cursor-pointer items-center mb-6">
                                     <a href="javascript:void(0)" class="flex items-center focus:outline-none focus:ring-2 focus:ring-white" >
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-code" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -123,8 +127,19 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="px-8 border-t border-gray-700">
-                            <ul class="w-full flex items-center justify-between bg-gray-800">
+
+                        {{-- under bar --}}
+
+                        <div class="border-t border-gray-700">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+    
+                                <button href="{{ route('logout') }}" class="bg-red-500 hover:bg-red-700 text-white w-full">
+                                    {{ __('Log Out') }}
+                                </button>
+                            </form>
+                            
+                            {{-- <ul class="w-full flex items-center justify-between bg-gray-800">
                                 <li class="cursor-pointer text-white pt-5 pb-3">
                                     <button aria-label="show notifications" class="focus:outline-none focus:ring-2 rounded focus:ring-gray-300">
                                         <svg  xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bell" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -162,10 +177,13 @@
                                         </svg>
                                     </button>
                                 </li>
-                            </ul>
+                            </ul> --}}
                         </div>
                     </div>
-                    <div class="w-64 z-40 absolute bg-gray-800 shadow md:h-full flex-col justify-between sm:hidden transition duration-150 ease-in-out" id="mobile-nav">
+
+                    {{-- unde bar end --}}
+
+                    {{-- <div class="w-64 z-40 absolute bg-gray-800 shadow md:h-full flex-col justify-between sm:hidden transition duration-150 ease-in-out" id="mobile-nav">
                         <button aria-label="toggle sidebar" id="openSideBar" class="h-10 w-10 bg-gray-800 absolute right-0 mt-16 -mr-10 flex items-center shadow rounded-tr rounded-br justify-center cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 rounded focus:ring-gray-800" onclick="sidebarHandler(true)">
                             <svg  xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-adjustments" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#FFFFFF" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" />
@@ -327,7 +345,8 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div> --}}
+                    
                     <!-- Sidebar ends -->
                     <!-- Remove class [ h-64 ] when adding a card block -->
                     {{-- <div class="container mx-auto py-10 h-64 md:w-4/5 w-11/12 px-6"> --}}
