@@ -59,11 +59,9 @@ class RoleController extends Controller
     {
         $role = Role::find($id);
 
-        $rolePermissions = $role->permissions;
-
         $permissions = Permission::orderBy('name')->get();
 
-        return view('roles.show', compact('role', 'rolePermissions', 'permissions'));
+        return view('roles.show', compact('role', 'permissions'));
     }
 
     /**
@@ -87,7 +85,17 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $role = Role::find($id);
+
+        $role->name = $role->name != $request->role_name ? $request->role_name : $role->name;
+
+        $role->update();
+
+        $role->syncPermissions($request->permissions);
+
+        return redirect()
+                ->route('roles.show', $role->id)
+                ->with('status', 'Se han guardado los cambios exitosamente.');
     }
 
     /**
@@ -98,6 +106,12 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $role = Role::find($id);
+
+        $role->delete();
+
+        return redirect()
+                ->route('roles.index')
+                ->with('status', 'El rol se ha eliminado correctamente.');
     }
 }

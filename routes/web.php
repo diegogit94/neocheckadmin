@@ -81,4 +81,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/roles/show/{id}', [RoleController::class, 'show'])
         ->middleware('can:roles.show')
         ->name('roles.show');
+
+    Route::patch('/roles/update/{id}', [RoleController::class, 'update'])
+        ->middleware('can:roles.update')
+        ->name('roles.update');
+
+    Route::delete('/roles/delete/{id}', [RoleController::class, 'destroy'])
+        ->middleware('can:roles.destroy')
+        ->name('roles.destroy');
 });
