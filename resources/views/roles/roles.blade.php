@@ -3,7 +3,7 @@
 @section('page', 'Roles')
 
 @section('content')
-    
+
 @if (session('status'))
     <div class="flex bg-gradient-to-r from-green-300 rounded-lg p-4 mb-4 text-sm text-gray-500">
         {{ session('status') }}
@@ -31,6 +31,9 @@
                         class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                         Permisos
                     </th>
+                    <th
+                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -49,6 +52,11 @@
                             <p class="text-gray-900 whitespace-no-wrap">
                                 {{ $role->permissions->implode('name', ' / ') }}
                             </p>
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <a href="{{ route('roles.edit', $role) }}" class="bg-yellow-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">
+                                Editar
+                            </a>
                         </td>
                     </tr>
                 @endforeach
