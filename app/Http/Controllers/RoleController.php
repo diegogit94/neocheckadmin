@@ -114,4 +114,25 @@ class RoleController extends Controller
                 ->route('roles.index')
                 ->with('status', 'El rol se ha eliminado correctamente.');
     }
+
+    /**
+     * Create a new role based on an existing role
+     *
+     * @param Request $request
+     * @param Role $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function duplicate(Request $request, Role $role)
+    {
+        $newRole = new Role;
+
+        $newRole->name = $request->role_name;
+        $newRole->save();
+
+        $newRole->syncPermissions($role->getPermissionNames());
+
+        return redirect()
+                ->route('roles.show', $newRole->id)
+                ->with('status', 'El rol se ha creado exitosamente.');
+    }
 }
