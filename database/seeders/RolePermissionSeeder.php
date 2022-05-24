@@ -37,13 +37,14 @@ class RolePermissionSeeder extends Seeder
         Permission::create(['name' => 'roles.edit'])->syncRoles(['admin']);
         Permission::create(['name' => 'roles.update'])->syncRoles(['admin']);
         Permission::create(['name' => 'roles.destroy'])->syncRoles(['admin']);
+        Permission::create(['name' => 'roles.duplicate'])->syncRoles(['admin']);
 
         $users = User::all();
 
         $roles = [
-            'admin' => 'admin', 
-            'leader' => 'leader', 
-            'engineer' => 'engineer', 
+            'admin' => 'admin',
+            'leader' => 'leader',
+            'engineer' => 'engineer',
             'commercial-agent' => 'commercial-agent'
         ];
 

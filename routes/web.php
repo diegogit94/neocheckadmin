@@ -89,4 +89,8 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/roles/delete/{id}', [RoleController::class, 'destroy'])
         ->middleware('can:roles.destroy')
         ->name('roles.destroy');
+
+    Route::post('/roles/duplicate/{role}', [RoleController::class, 'duplicate'])
+        ->middleware('can:roles.duplicate')
+        ->name('roles.duplicate');
 });
